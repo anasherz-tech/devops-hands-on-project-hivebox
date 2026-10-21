@@ -1,4 +1,4 @@
-""" Endpoint: /version and Endpoint: /temperature """
+"""Endpoint: /version and Endpoint: /temperature"""
 import datetime as dt
 import requests
 from flask import Flask
