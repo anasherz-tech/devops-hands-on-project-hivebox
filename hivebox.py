@@ -20,29 +20,21 @@ def avg_temp():
 
     fresh_sensors = []
     for sensebox_id in SENSEBOX_IDS:
-        r = requests.get("https://api.opensensemap.org/boxes/" + sensebox_id, timeout=20)
+        try:
+            r = requests.get("https://api.opensensemap.org/boxes/" + sensebox_id, timeout=20)
+        except requests.RequestException:
+            continue
         data = r.json()
         for sensor in data['sensors']:
             if sensor.get('title') == 'Temperatur':
-                print(float(sensor['lastMeasurement']['value']))
-                print(sensor['lastMeasurement']['createdAt'])
                 time_now = dt.datetime.now(tz=dt.UTC)
                 current_sensor_reading = sensor['lastMeasurement']['createdAt']
                 reading = time_now - (dt.datetime.fromisoformat(current_sensor_reading))
-                print(reading)
                 if reading < dt.timedelta(hours=1):
-                    print("Fresh")
                     fresh_sensors.append(float(sensor['lastMeasurement']['value']))
-                else:
-                    print("Old")
-    print(fresh_sensors)
-
-
     if fresh_sensors:
         sum_fresh_sensors = sum(fresh_sensors)
         len_fresh_sensors = len(fresh_sensors)
         avg_fresh_sensors = sum_fresh_sensors / len_fresh_sensors
-        print(avg_fresh_sensors)
         return {"temperature":avg_fresh_sensors}
-    print("All sensors are giving old value")
-    return {"temperature":"All sensors are giving old value"}
+    return {"temperature":"No fresh temperature data available"}
