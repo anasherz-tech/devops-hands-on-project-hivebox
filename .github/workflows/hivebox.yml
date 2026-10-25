@@ -1,0 +1,17 @@
+name: hivebox workflow
+on: [push, pull_request]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Set up Python 3.14
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - name: Install dependencies
+        run: |
+          pip install -r requirements-dev.txt
+
+      - name: run pylint
+        run: python -m pylint hivebox.py project.py test_hivebox.py
