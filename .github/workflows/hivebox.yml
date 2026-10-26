@@ -24,3 +24,7 @@ jobs:
         run: pytest
       - name: build docker image
         run: docker build -t hivebox:v0.1.0 .
+      - name: test /version
+        run: |
+          docker run -p  127.0.0.1:80:5000/tcp -d hivebox:v0.1.0
+          curl http://127.0.0.1:80/version --silent | grep 'v0.1.0'
