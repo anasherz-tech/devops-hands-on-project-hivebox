@@ -15,3 +15,8 @@ jobs:
 
       - name: run pylint
         run: python -m pylint hivebox.py project.py test_hivebox.py
+
+      - name: Lint Dockerfile
+        uses: hadolint/hadolint-action@v3.5.0
+        with:
+          dockerfile: "Dockerfile"
