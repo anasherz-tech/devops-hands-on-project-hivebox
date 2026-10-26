@@ -27,4 +27,4 @@ jobs:
       - name: test /version
         run: |
           docker run -p  127.0.0.1:80:5000/tcp -d hivebox:v0.1.0
-          curl http://127.0.0.1:80/version --silent | grep 'v0.1.0'
+          curl --silent --show-error  http://127.0.0.1:80/version | grep 'v0.1.0'
