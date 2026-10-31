@@ -11,3 +11,4 @@
 ## Reporting a Vulnerability
 
 You can report a vulnerability by contacting us on our GitHub account
+https://github.com/anasherz-tech
