@@ -1,12 +1,15 @@
 """Endpoint: /version and Endpoint: /temperature"""
+import os
 import datetime as dt
 import requests
 from flask import Flask
 from project import VERSION
 
-app = Flask(__name__)
-SENSEBOX_IDS = ["5eba5fbad46fb8001b799786", "5c21ff8f919bf8001adf2488", "5ade1acf223bd80019a1011c"]
 
+app = Flask(__name__)
+SENSEBOX_IDS = os.getenv("SENSEBOX_IDS" , default="5eba5fbad46fb8001b799786,"
+"5c21ff8f919bf8001adf2488,"
+"5ade1acf223bd80019a1011c").split(",")
 @app.route("/version")
 def print_version():
     """Return the version of the app"""
