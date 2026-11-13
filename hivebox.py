@@ -41,5 +41,13 @@ def avg_temp():
         sum_fresh_sensors = sum(fresh_sensors)
         len_fresh_sensors = len(fresh_sensors)
         avg_fresh_sensors = sum_fresh_sensors / len_fresh_sensors
-        return {"temperature":avg_fresh_sensors}
+        int_temperature = int(avg_fresh_sensors)
+        status = ""
+        if int_temperature >= 37:
+            status = "Too Hot"
+        elif  37 > int_temperature > 10:
+            status = "Good"
+        elif int_temperature <= 10:
+            status = "Too Cold"
+        return {"temperature":avg_fresh_sensors, "status":status}
     return {"temperature":"No fresh temperature data available"}
