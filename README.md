@@ -53,3 +53,9 @@ Here is a pre-start checklist:
 ## Implementation
 
 ** ADD YOUR IMPLEMENTATION DOCUMENTATION HERE **
+
+## Project History
+
+This repository is the standalone version of my HiveBox project.
+
+The original fork, including its earlier pull requests and review history, is archived here: [hivebox-fork-archive](https://github.com/anasherz-tech/hivebox-fork-archive).
