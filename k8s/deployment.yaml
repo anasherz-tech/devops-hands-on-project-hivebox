@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hivebox-deployment
+  labels:
+    app: hivebox
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hivebox
+  template:
+    metadata:
+      labels:
+        app: hivebox
+    spec:
+      containers:
+      - name: hivebox
+        image: hivebox:v0.3.0
+        ports:
+        - containerPort: 5000
+  
